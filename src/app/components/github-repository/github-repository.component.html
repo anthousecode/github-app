@@ -1,0 +1,58 @@
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img [src]="repository.owner.avatar_url">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong><a [routerLink]="['repository', repository.owner.login, repository.name]">{{repository.name}}</a></strong> <br><small>{{repository.full_name}}</small> <br>
+        <br>
+        {{repository.description}}
+      </p>
+    </div>
+    <nav class="level is-mobile">
+      <div class="level-left">
+
+        <br>
+        <p class="level-item">Clone repository: </p>
+        <div class="level-item">
+          <div class="buttons has-addons">
+            <input type="text" class="offscreen" aria-hidden="true" [value]="'git clone ' + repository.ssh_url" #ssh>
+            <button class="is-small button" (click)="copyToClipboard(ssh)">SSH</button>
+            <input type="text" class="offscreen" aria-hidden="true" [value]="'git clone ' + repository.clone_url" #http>
+            <button class="is-small button" (click)="copyToClipboard(http)">HTTPS</button>
+          </div>
+        </div>
+        <div class="level-item">
+          <button class="button is-small">
+           <span class="icon is-small">
+             <i class="fas fa-star"></i>
+           </span>
+            <span>{{repository.stargazers_count }}</span>
+          </button>
+          <a class="button is-small" target="_blank" [href]="repository.html_url">
+                <span class="icon is-small">
+                  <i class="fab fa-github"></i>
+                </span>
+            <span>GitHub</span>
+          </a>
+          <a class="button is-small" target="_blank" [href]="repository.homepage">
+                <span class="icon is-small">
+                  <i class="fas fa-home"></i>
+                </span>
+            <span>Website</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="left-level">
+
+  </div>
+  <div class="media-right">
+    <small>Last commit: {{repository.pushed_at | date:'medium'}}</small>
+  </div>
+</article>
+<hr>

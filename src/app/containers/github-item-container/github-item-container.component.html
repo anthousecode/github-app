@@ -1,0 +1,66 @@
+<section class="section">
+  <div class="container">
+    <a [routerLink]="['/']" class="is-size-4"><i class="fas fa-arrow-left"></i> Back</a>
+    <hr>
+    <div class="box" *ngIf="repository$ | async as repository">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img [src]="repository.owner.avatar_url" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{repository.name}}</strong> <br><small>{{repository.full_name}}</small> <br>
+              <br>
+              {{repository.description}}
+            </p>
+            <div class="columns">
+              <div class="column">
+                <div class="buttons has-addons">
+                  <p class="mr-2">Clone repository:</p>
+                  <input type="text" class="offscreen" aria-hidden="true" [value]="'git clone ' + repository.ssh_url"
+                         #ssh>
+                  <button class="is-small button" (click)="copyToClipboard(ssh)">SSH</button>
+                  <input type="text" class="offscreen" aria-hidden="true" [value]="'git clone ' + repository.clone_url"
+                         #http>
+                  <button class="is-small button" (click)="copyToClipboard(http)">HTTPS</button>
+                </div>
+                <a class="button is-small" target="_blank" [href]="repository.html_url">
+                <span class="icon is-small">
+                  <i class="fab fa-github"></i>
+                </span>
+                  <span>GitHub</span>
+                </a>
+              </div>
+              <div class="column">
+                <p class="title">Author</p>
+                <ul>
+                  <li>
+                    Profile: <a [href]="repository.owner.html_url" target="_blank">{{repository.owner.login}}</a>
+                  </li>
+                  <li>
+                    Type: {{repository.owner.type}}
+                  </li>
+                </ul>
+              </div>
+              <div class="column">
+                <p class="title">Repository</p>
+                <ul>
+                  <li>
+                    Stars: {{repository.stargazers_count}}
+                  </li>
+                  <li>Watchers: {{repository.watchers_count}}</li>
+                  <li>Created: {{repository.created_at | date:'medium'}}</li>
+                  <li>Updated: {{repository.updated_at | date:'medium'}}</li>
+                  <li>Pushed: {{repository.pushed_at | date:'medium'}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

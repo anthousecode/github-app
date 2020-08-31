@@ -1,0 +1,16 @@
+<section class="section">
+  <div class="container">
+    <label>
+      Search for repository:
+      <input class="input" type="text" name="search" #githubSearch>
+    </label>
+    <hr>
+
+    <progress class="progress is-small is-primary" max="100" *ngIf="isLoading$ | async"></progress>
+
+    <ng-container *ngIf="repositories$ | async as repositories">
+      <app-github-repository *ngFor="let repository of repositories" [repository]="repository"></app-github-repository>
+
+    </ng-container>
+  </div>
+</section>
