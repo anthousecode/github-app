@@ -10,3 +10,5 @@ export const selectRepositories = createSelector(selectGithubState, (state: Gith
 export const selectGithubIsLoading = createSelector(selectGithubState, (state: GithubState) => state.isLoading);
 export const selectGithubRepository = createSelector(selectGithubState, (state: GithubState) => state.selectedItem);
 export const selectSavedSearchInput = createSelector(selectGithubState, (state: GithubState) => state.searchInput);
+export const selectSavedFilterInput = createSelector(selectGithubState, (state: GithubState) => state.filterInput);
+export const selectSavedDateInput = createSelector(selectGithubState, (state: GithubState) => state.dateInput);

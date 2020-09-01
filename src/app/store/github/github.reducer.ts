@@ -32,6 +32,8 @@ export interface GithubState {
   isLoading: boolean;
   selectedItem: GithubItem;
   searchInput: string;
+  filterInput: string;
+  dateInput: Date;
 }
 
 export const initialGithubState: GithubState = {
@@ -39,7 +41,10 @@ export const initialGithubState: GithubState = {
   items: [],
   isLoading: false,
   selectedItem: null,
-  searchInput: ''
+  searchInput: '',
+  filterInput: '',
+  dateInput: new Date('2018-07-22')
+
 };
 
 export function githubReducer(state = initialGithubState, action: GithubActions): GithubState {
@@ -72,6 +77,18 @@ export function githubReducer(state = initialGithubState, action: GithubActions)
       return {
         ...state,
         searchInput: action.payload
+      };
+
+    case GithubActionTypes.SaveFilterInput:
+      return {
+        ...state,
+        filterInput: action.payload
+      };
+
+    case GithubActionTypes.SaveDateInput:
+      return {
+        ...state,
+        dateInput: action.payload
       };
 
     default:

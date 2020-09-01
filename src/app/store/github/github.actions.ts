@@ -9,7 +9,9 @@ export enum GithubActionTypes {
   LoadRepository = '[Github] Load Repository',
   LoadRepositorySuccess = '[Github] Load Repository Success',
   LoadRepositoryFailure = '[Github] Load Repository Failure',
-  SaveSearchInput = '[Github] Save Search Input'
+  SaveSearchInput = '[Github] Save Search Input',
+  SaveFilterInput = '[Github] Save Filter Input',
+  SaveDateInput = '[Github] Save Date Input',
 }
 
 export class LoadGithub implements Action {
@@ -45,6 +47,16 @@ export class SaveSearchInput implements Action {
   constructor(public payload: string) {}
 }
 
+export class SaveFilterInput implements Action {
+  readonly type = GithubActionTypes.SaveFilterInput;
+  constructor(public payload: string) {}
+}
+
+export class SaveDateInput implements Action {
+  readonly type = GithubActionTypes.SaveDateInput;
+  constructor(public payload: Date) {}
+}
+
 export type GithubActions = LoadGithub | LoadGithubSuccess | LoadGithubFailure |
-  LoadRepository | LoadRepositorySuccess | LoadRepositoryFailure | SaveSearchInput;
+  LoadRepository | LoadRepositorySuccess | LoadRepositoryFailure | SaveSearchInput | SaveFilterInput | SaveDateInput;
 

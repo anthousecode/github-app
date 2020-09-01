@@ -4,6 +4,18 @@
       Search for repository:
       <input class="input" type="text" name="search" #githubSearch>
     </label>
+    <div class="columns">
+      <div class="column is-half"><label>
+        Filter by name:
+        <input class="input" type="text" name="filter" #nameFilter>
+      </label>
+      </div>
+      <div class="column is-half"><label>
+        Filter by last commit:
+        <input class="input" type="date" name="filter" value="2018-07-22" #dateFilter>
+      </label>
+      </div>
+    </div>
     <hr>
 
     <progress class="progress is-small is-primary" max="100" *ngIf="isLoading$ | async"></progress>
